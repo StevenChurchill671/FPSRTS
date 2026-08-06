@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dra7deoft7mk5"]
+
+[ext_resource type="Script" uid="uid://dxd4mid4pp2mt" path="res://gun_one.gd" id="1_62bri"]
+[ext_resource type="PackedScene" uid="uid://cheypjgb8skx8" path="res://gunflare.blend" id="1_g7j4p"]
+[ext_resource type="Script" uid="uid://4p7vy2x456he" path="res://gunflare.gd" id="3_nvn3l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hqtel"]
+albedo_color = Color(0.098728366, 0.09872835, 0.09872835, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
+material = SubResource("StandardMaterial3D_hqtel")
+size = Vector3(1, 0.14587402, 0.48779297)
+
+[node name="gunOne" type="Node3D" unique_id=1664649980]
+script = ExtResource("1_62bri")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=251224882]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0446167, -0.25610352)
+mesh = SubResource("BoxMesh_yf5fn")
+
+[node name="gunflare" parent="MeshInstance3D" unique_id=838418111 instance=ExtResource("1_g7j4p")]
+transform = Transform3D(-0.021590982, 0.9997669, 0, -0.9997669, -0.021590982, 0, 0, 0, 1, 0.7138808, -0.006985843, 0)
+script = ExtResource("3_nvn3l")
+
+[node name="Cylinder" parent="MeshInstance3D/gunflare" index="0" unique_id=1932459331]
+blend_shapes/first = 0.00030403
+blend_shapes/small = 0.999696
+"blend_shapes/Key 3" = 0.00030403
+
+[connection signal="animation_finished" from="MeshInstance3D/gunflare/AnimationPlayer" to="MeshInstance3D/gunflare" method="_on_animation_player_animation_finished"]
+
+[editable path="MeshInstance3D/gunflare"]

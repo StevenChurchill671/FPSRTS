@@ -9,7 +9,7 @@ points = PackedVector3Array(-0.5, -0.04321289, -0.5, -0.5, 0.043212883, -0.5, 0.
 [node name="mapOne" type="Node3D" unique_id=571239912]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=420298779]
-transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, 0, -0.4567871, 0)
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, -0.4567871, 0)
 mesh = SubResource("BoxMesh_g4v7s")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1740405589]

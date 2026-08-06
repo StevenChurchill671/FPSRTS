@@ -2,6 +2,9 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hqtel"]
+albedo_color = Color(1, 0.18039216, 1, 1)
+
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bkeyn"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
@@ -14,8 +17,10 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 [node name="AIpositions" type="Node3D" unique_id=231164429]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=9102229]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.551998, 0, 1.1800427)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.551998, 0, 1.6641679)
+visible = false
 mesh = SubResource("BoxMesh_g4v7s")
+surface_material_override/0 = SubResource("StandardMaterial3D_hqtel")
 
 [node name="Area3D" type="Area3D" parent="MeshInstance3D" unique_id=412776115]
 
@@ -23,8 +28,10 @@ mesh = SubResource("BoxMesh_g4v7s")
 shape = SubResource("ConvexPolygonShape3D_bkeyn")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=991735538]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8636627, 0, -1.9438689)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3689337, 0, -1.9438689)
+visible = false
 mesh = SubResource("BoxMesh_g4v7s")
+surface_material_override/0 = SubResource("StandardMaterial3D_hqtel")
 
 [node name="Area3D" type="Area3D" parent="MeshInstance3D2" unique_id=1526101307]
 
@@ -32,8 +39,10 @@ mesh = SubResource("BoxMesh_g4v7s")
 shape = SubResource("ConvexPolygonShape3D_j1bvr")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1244412171]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0618238, 0, -0.3924551)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5347927, 0, -0.3924551)
+visible = false
 mesh = SubResource("BoxMesh_g4v7s")
+surface_material_override/0 = SubResource("StandardMaterial3D_hqtel")
 
 [node name="Area3D" type="Area3D" parent="MeshInstance3D3" unique_id=1075338679]
 
