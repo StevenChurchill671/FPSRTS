@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://b12l3o0ml8tf0"]
+
+[ext_resource type="Script" uid="uid://cqygiowkrarq6" path="res://target.gd" id="1_t2jmu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2jmu"]
+albedo_color = Color(1, 0.03137255, 0.15686275, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_t2jmu")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3hr3o"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="target" type="CharacterBody3D" unique_id=1623900586]
+script = ExtResource("1_t2jmu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1192634389]
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=459574340]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=451897895]
+shape = SubResource("ConvexPolygonShape3D_3hr3o")
+
+[node name="targetArea3D" type="Area3D" parent="." unique_id=107319027]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="targetArea3D" unique_id=509465301]
+shape = SubResource("ConvexPolygonShape3D_3hr3o")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1183807197]
+
+[connection signal="area_entered" from="targetArea3D" to="." method="_on_target_area_3d_area_entered"]
