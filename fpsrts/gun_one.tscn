@@ -34,7 +34,7 @@ wait_time = 0.067
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.56869495, 0, -0.17048982)
 
 [node name="bulletdelayer" type="Timer" parent="." unique_id=1333417980]
-wait_time = 0.05
+wait_time = 0.002
 
 [connection signal="animation_finished" from="MeshInstance3D/gunflare/AnimationPlayer" to="MeshInstance3D/gunflare" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="fireRate" to="." method="_on_timer_timeout"]

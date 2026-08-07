@@ -6,6 +6,18 @@ size = Vector3(1, 0.08642578, 1)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7vel1"]
 points = PackedVector3Array(-0.5, -0.04321289, -0.5, -0.5, 0.043212883, -0.5, 0.5, -0.04321289, -0.5, -0.5, -0.04321289, 0.5, -0.5, 0.043212883, 0.5, 0.5, 0.043212883, -0.5, 0.5, -0.04321289, 0.5, 0.5, 0.043212883, 0.5)
 
+[sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_121qs"]
+sun_angle_max = 59.27
+
+[sub_resource type="Sky" id="Sky_u8do7"]
+sky_material = SubResource("ProceduralSkyMaterial_121qs")
+
+[sub_resource type="Environment" id="Environment_7vel1"]
+background_mode = 2
+sky = SubResource("Sky_u8do7")
+
 [node name="mapOne" type="Node3D" unique_id=571239912]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=420298779]
@@ -16,3 +28,12 @@ mesh = SubResource("BoxMesh_g4v7s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=1460574169]
 shape = SubResource("ConvexPolygonShape3D_7vel1")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1756513305]
+mesh = SubResource("BoxMesh_yf5fn")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1019325369]
+environment = SubResource("Environment_7vel1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=657811497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 33.233074, 0)
