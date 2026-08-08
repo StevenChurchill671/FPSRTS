@@ -21,10 +21,10 @@ func _ready():
 func set_target():
 	await get_tree().physics_frame
 	agent.set_target_position(get_parent().get_parent().get_child(0).global_position)
-func _physics_process(delta):
-	set_target()
-	velocity = global_position.direction_to(agent.target_position) * speed
-	move_and_slide()
+#func _physics_process(delta):
+	#set_target()
+	#velocity = global_position.direction_to(agent.target_position) * speed
+	#move_and_slide()
 func _process(delta: float) -> void:
 	var sightObject = $sightRange.get_collider()
 	var object = $shootRange.get_collider()
@@ -32,4 +32,7 @@ func _process(delta: float) -> void:
 		$gunOne.shoot()
 	if sightObject == get_parent().get_parent().get_child(0):
 		#rotate(Vector3.RIGHT, deg_to_rad(90))
-		look_at(sightObject.global_position, Vector3.FORWARD)
+		$".".look_at(sightObject.global_position, Vector3.UP)
+		set_target()
+		velocity = global_position.direction_to(agent.target_position) * speed
+		move_and_slide()

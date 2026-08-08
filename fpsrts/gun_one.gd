@@ -19,7 +19,10 @@ func shoot():
 
 func test():
 	var localBullet = bullet.instantiate()
-	$projectilehold.add_child(localBullet)
+	$".".add_child(localBullet)
+	#get_parent().get_parent().add_child(localBullet)
+	#localBullet.global_position = $".".global_position
+	#localBullet.global_rotation = $".".global_rotation
 	localBullet.rotate(Vector3.FORWARD, deg_to_rad(90))
 	#$projectilehold.global_position += Vector3(0,0.1,0)
 	#var gunLocation = $".".global_position
