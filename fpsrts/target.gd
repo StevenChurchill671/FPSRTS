@@ -31,4 +31,5 @@ func _process(delta: float) -> void:
 	if object == get_parent().get_parent().get_child(0):
 		$gunOne.shoot()
 	if sightObject == get_parent().get_parent().get_child(0):
-		rotate(Vector3.RIGHT, deg_to_rad(90))
+		#rotate(Vector3.RIGHT, deg_to_rad(90))
+		look_at(sightObject.global_position, Vector3.FORWARD)

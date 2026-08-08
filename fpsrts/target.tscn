@@ -31,15 +31,17 @@ shape = SubResource("ConvexPolygonShape3D_3hr3o")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1183807197]
 
 [node name="shootRange" type="RayCast3D" parent="." unique_id=812460038]
-transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 20, 0, 0, 0.75587225)
-target_position = Vector3(0, 0, 1)
+transform = Transform3D(-25, 0, 1.7484556e-06, 0, 25, 0, -2.1855692e-06, 0, -19.999998, 0.2973072, 0, 0.055794537)
+target_position = Vector3(0, 0, 2)
+collision_mask = 9
 debug_shape_thickness = 5
 
 [node name="gunOne" parent="." unique_id=1664649980 instance=ExtResource("2_e1yvt")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.44596076, 0.20903224, 0.46162796)
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -0.14865361, 0.20903224, -0.4921948)
 
 [node name="sightRange" type="RayCast3D" parent="." unique_id=602056291]
-transform = Transform3D(300, 0, 0, 0, 50, 0, 0, 0, 30, 0, 0, 0)
-target_position = Vector3(0, 0, 1)
+transform = Transform3D(-300, 0, 2.6226833e-06, 0, 50.000008, 0, -2.6226833e-05, 0, -30, 0.29730713, 0, 0.8116668)
+target_position = Vector3(0, 0, 3)
+collision_mask = 9
 
 [connection signal="area_entered" from="targetArea3D" to="." method="_on_target_area_3d_area_entered"]
