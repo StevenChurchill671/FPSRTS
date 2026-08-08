@@ -25,3 +25,10 @@ func _physics_process(delta):
 	set_target()
 	velocity = global_position.direction_to(agent.target_position) * speed
 	move_and_slide()
+func _process(delta: float) -> void:
+	var sightObject = $sightRange.get_collider()
+	var object = $shootRange.get_collider()
+	if object == get_parent().get_parent().get_child(0):
+		$gunOne.shoot()
+	if sightObject == get_parent().get_parent().get_child(0):
+		rotate(Vector3.RIGHT, deg_to_rad(90))

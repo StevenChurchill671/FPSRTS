@@ -53,7 +53,7 @@ mesh = SubResource("BoxMesh_g4v7s")
 transform = Transform3D(-1.3113417e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.3113417e-08, 0.26247197, 0.10138994, -0.21921453)
 mesh = SubResource("TextMesh_g4v7s")
 
-[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1200440759]
+[node name="weaponRange" type="RayCast3D" parent="." unique_id=1200440759]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.6705801, 0, 0)
 collide_with_areas = true
 

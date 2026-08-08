@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b12l3o0ml8tf0"]
 
 [ext_resource type="Script" uid="uid://cqygiowkrarq6" path="res://target.gd" id="1_t2jmu"]
+[ext_resource type="PackedScene" uid="uid://dra7deoft7mk5" path="res://gun_one.tscn" id="2_e1yvt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2jmu"]
 albedo_color = Color(1, 0.03137255, 0.15686275, 1)
@@ -28,5 +29,17 @@ shape = SubResource("ConvexPolygonShape3D_3hr3o")
 shape = SubResource("ConvexPolygonShape3D_3hr3o")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1183807197]
+
+[node name="shootRange" type="RayCast3D" parent="." unique_id=812460038]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 20, 0, 0, 0.75587225)
+target_position = Vector3(0, 0, 1)
+debug_shape_thickness = 5
+
+[node name="gunOne" parent="." unique_id=1664649980 instance=ExtResource("2_e1yvt")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.44596076, 0.20903224, 0.46162796)
+
+[node name="sightRange" type="RayCast3D" parent="." unique_id=602056291]
+transform = Transform3D(300, 0, 0, 0, 50, 0, 0, 0, 30, 0, 0, 0)
+target_position = Vector3(0, 0, 1)
 
 [connection signal="area_entered" from="targetArea3D" to="." method="_on_target_area_3d_area_entered"]
