@@ -38,6 +38,8 @@ func _physics_process(delta):
 		crouchedTime = 4
 	if Input.is_action_pressed("left_click"):
 		$Camera3D/gunOne2.triggerPull()
+	if Input.is_action_pressed("reload"):
+		$Camera3D/gunOne2.reloadWeapon()
 	if Input.is_action_just_pressed("jump"): #&& stamina >= 20 :
 		#stamina -= 20
 		self.velocity.y = jumpHeight 

@@ -8,6 +8,7 @@ func triggerPull():
 	if ammmoRemaining > 0 && !cooldown:
 		shoot();
 		ammmoRemaining -=1
+		$MeshInstance3D3.mesh.text = "" + str(ammmoRemaining) 
 		cooldown = true
 		$fireRate.start()
 		test()
@@ -30,10 +31,19 @@ func bulletDistancer(localBullet):
 		waiting = true
 		$bulletdelayer.start()
 		await $bulletdelayer.timeout
-		localBullet.position += Vector3(0.1,0,0)
+		localBullet.position += Vector3(0.2,0,0)
 		localBulletDistance -=1
 	localBullet.queue_free()
 	
+	
+func reloadWeapon():
+	var ammoNeeded = ammmoRemaining -60
+	var tempTotal = ammoTotal 
+	ammoTotal += ammoNeeded
+	ammmoRemaining += (tempTotal - ammoTotal)
+	$MeshInstance3D3.mesh.text = "" + str(ammmoRemaining) 
+	 
+	 
 func _on_timer_timeout() -> void:
 	cooldown = false
 

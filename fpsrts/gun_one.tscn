@@ -11,6 +11,15 @@ albedo_color = Color(0.098728366, 0.09872835, 0.09872835, 1)
 material = SubResource("StandardMaterial3D_hqtel")
 size = Vector3(1, 0.14587402, 0.48779297)
 
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
+albedo_color = Color(0.16862746, 1, 1, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_yf5fn")
+text = "60"
+
 [node name="gunOne" type="Node3D" unique_id=1664649980]
 script = ExtResource("1_62bri")
 
@@ -19,7 +28,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0446167, -0.25610352)
 mesh = SubResource("BoxMesh_yf5fn")
 
 [node name="gunflare" parent="MeshInstance3D" unique_id=838418111 instance=ExtResource("1_g7j4p")]
-transform = Transform3D(-0.021590982, 0.9997669, 0, -0.9997669, -0.021590982, 0, 0, 0, 1, 0.7138808, -0.006985843, 0)
+transform = Transform3D(-0.016193237, 0.7498252, 0, -0.7498252, -0.016193237, 0, 0, 0, 0.75, 0.7138808, -0.006985843, 0)
 script = ExtResource("3_nvn3l")
 
 [node name="Cylinder" parent="MeshInstance3D/gunflare" index="0" unique_id=1932459331]
@@ -28,13 +37,25 @@ blend_shapes/small = 0.999696
 "blend_shapes/Key 3" = 0.00030403
 
 [node name="fireRate" type="Timer" parent="." unique_id=1816735517]
-wait_time = 0.067
+wait_time = 0.1
 
 [node name="projectilehold" type="Node3D" parent="." unique_id=687631804]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.56869495, 0, -0.17048982)
 
 [node name="bulletdelayer" type="Timer" parent="." unique_id=1333417980]
-wait_time = 0.002
+wait_time = 0.001
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1497971463]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.3788839, 0.09662324, -0.23147723)
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=2009857306]
+transform = Transform3D(-1.3113417e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.3113417e-08, 0.26247197, 0.10138994, -0.21921453)
+mesh = SubResource("TextMesh_g4v7s")
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1200440759]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.6705801, 0, 0)
+collide_with_areas = true
 
 [connection signal="animation_finished" from="MeshInstance3D/gunflare/AnimationPlayer" to="MeshInstance3D/gunflare" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="fireRate" to="." method="_on_timer_timeout"]
