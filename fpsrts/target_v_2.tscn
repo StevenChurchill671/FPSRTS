@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://bgewpxnhwsd4c"]
+
+[ext_resource type="PackedScene" uid="uid://df6qqenjal2tv" path="res://targetonebody.blend" id="1_mkgc8"]
+[ext_resource type="Script" uid="uid://cmyxdtveynq73" path="res://target_v_2.gd" id="1_xkqew"]
+[ext_resource type="PackedScene" uid="uid://dra7deoft7mk5" path="res://gun_one.tscn" id="3_t6rcr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y3k0q"]
+albedo_color = Color(0.71794087, 0.14594367, 0.17434195, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xkqew"]
+points = PackedVector3Array(1, 1, 1, 1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t6rcr"]
+points = PackedVector3Array(1, 1, 1, 1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rr4od"]
+points = PackedVector3Array(1, 1, 1, 1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jl658"]
+points = PackedVector3Array(1, 1, 1, 1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ltdnk"]
+points = PackedVector3Array(1, 1, 1, 1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(5.0220337, 9.26062, 2.6148071)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+size = Vector3(5.160095, 3.4535828, 2.1669312)
+
+[node name="targetV2" type="CharacterBody3D" unique_id=1542192498]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_xkqew")
+
+[node name="targetonebody" parent="." unique_id=2046166738 instance=ExtResource("1_mkgc8")]
+
+[node name="Cube" parent="targetonebody" index="0" unique_id=267260896]
+surface_material_override/0 = SubResource("StandardMaterial3D_y3k0q")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="targetonebody/Cube" index="0" unique_id=1862921125]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="targetonebody/Cube/StaticBody3D" unique_id=1260781576]
+shape = SubResource("ConvexPolygonShape3D_xkqew")
+
+[node name="Cube_001" parent="targetonebody" index="1" unique_id=2105939825]
+surface_material_override/0 = SubResource("StandardMaterial3D_y3k0q")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="targetonebody/Cube_001" index="0" unique_id=1212555518]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="targetonebody/Cube_001/StaticBody3D" unique_id=381140800]
+shape = SubResource("ConvexPolygonShape3D_t6rcr")
+
+[node name="Cube_002" parent="targetonebody" index="2" unique_id=1811030287]
+surface_material_override/0 = SubResource("StandardMaterial3D_y3k0q")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="targetonebody/Cube_002" index="0" unique_id=2121114922]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="targetonebody/Cube_002/StaticBody3D" unique_id=1989456271]
+shape = SubResource("ConvexPolygonShape3D_rr4od")
+
+[node name="Cube_003" parent="targetonebody" index="3" unique_id=246122075]
+surface_material_override/0 = SubResource("StandardMaterial3D_y3k0q")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="targetonebody/Cube_003" index="0" unique_id=2132515228]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="targetonebody/Cube_003/StaticBody3D" unique_id=1480781411]
+shape = SubResource("ConvexPolygonShape3D_jl658")
+
+[node name="Cube_004" parent="targetonebody" index="4" unique_id=1413797899]
+surface_material_override/0 = SubResource("StandardMaterial3D_y3k0q")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="targetonebody/Cube_004" index="0" unique_id=1058160561]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="targetonebody/Cube_004/StaticBody3D" unique_id=2092414454]
+shape = SubResource("ConvexPolygonShape3D_ltdnk")
+
+[node name="target_area" type="Area3D" parent="targetonebody" unique_id=331830492]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="targetonebody/target_area" unique_id=1631592748]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4060974, 3.138977, -0.02407837)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="targetonebody/target_area" unique_id=645980577]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6187077, 6.5478697, -0.08358765)
+shape = SubResource("BoxShape3D_yf5fn")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=361655313]
+
+[node name="shootRange" type="RayCast3D" parent="." unique_id=1939855088]
+transform = Transform3D(400, 0, 0, 0, 400, 0, 0, 0, 2, 0, 4, -17)
+target_position = Vector3(0, 0, 8)
+collision_mask = 9
+
+[node name="sightRange" type="RayCast3D" parent="." unique_id=1920220770]
+transform = Transform3D(400, 0, 0, 0, 400, 0, 0, 0, 2, 0, 4, -30)
+target_position = Vector3(0, 0, 15)
+collision_mask = 9
+debug_shape_thickness = 5
+
+[node name="gunOne" parent="." unique_id=1664649980 instance=ExtResource("3_t6rcr")]
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 6.1581163, 5.811728, -1.4880953)
+
+[connection signal="area_entered" from="targetonebody/target_area" to="." method="_on_target_area_3d_area_entered"]
+
+[editable path="targetonebody"]

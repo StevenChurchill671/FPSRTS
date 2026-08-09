@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dy7u50suk3nvx"]
+
+[ext_resource type="PackedScene" uid="uid://lqc0amubsbld" path="res://map_two_base.tscn" id="1_ad2h7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
+size = Vector3(1, 1, 3.171753)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ad2h7"]
+points = PackedVector3Array(0.5, 0.5, 1.5858765, 0.5, -0.5, 1.5858765, 0.5, 0.5, -1.5858765, -0.5, 0.5, 1.5858765, -0.5, -0.5, 1.5858765, 0.5, -0.5, -1.5858765, -0.5, 0.5, -1.5858765, -0.5, -0.5, -1.5858765)
+
+[sub_resource type="BoxMesh" id="BoxMesh_57qmd"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_v8bx0"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+
+[node name="map_two_obstacles" type="Node3D" unique_id=636235057]
+
+[node name="map_two_base" parent="." unique_id=1374074783 instance=ExtResource("1_ad2h7")]
+
+[node name="firstobs" type="Node3D" parent="map_two_base" unique_id=649812078]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 10)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="map_two_base/firstobs" unique_id=1040356522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.91399956)
+mesh = SubResource("BoxMesh_yf5fn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="map_two_base/firstobs/MeshInstance3D2" unique_id=1394112066]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map_two_base/firstobs/MeshInstance3D2/StaticBody3D" unique_id=409034777]
+shape = SubResource("ConvexPolygonShape3D_ad2h7")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="map_two_base/firstobs" unique_id=1138848298]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1)
+mesh = SubResource("BoxMesh_57qmd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="map_two_base/firstobs/MeshInstance3D3" unique_id=1294278640]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map_two_base/firstobs/MeshInstance3D3/StaticBody3D" unique_id=1921213337]
+shape = SubResource("ConvexPolygonShape3D_v8bx0")
+
+[node name="hideArea" type="Area3D" parent="map_two_base/firstobs" unique_id=672352253]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map_two_base/firstobs/hideArea" unique_id=34991238]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.991, 0.5, 0)
+shape = SubResource("BoxShape3D_g4v7s")
