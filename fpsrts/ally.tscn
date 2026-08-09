@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://dhbykxr8ch170"]
+
+[ext_resource type="Script" uid="uid://c5dbt4fkecyje" path="res://ally.gd" id="1_0mrcl"]
+[ext_resource type="PackedScene" uid="uid://dra7deoft7mk5" path="res://gun_one.tscn" id="2_bgssa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2jmu"]
+albedo_color = Color(1, 0.03137255, 0.15686275, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q4svr"]
+material = SubResource("StandardMaterial3D_t2jmu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4v7s"]
+albedo_color = Color(0, 0.19215687, 1, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1olia"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="ally" type="CharacterBody3D" unique_id=191582796]
+script = ExtResource("1_0mrcl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=47864135]
+mesh = SubResource("BoxMesh_q4svr")
+surface_material_override/0 = SubResource("StandardMaterial3D_g4v7s")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1811455217]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=74893345]
+shape = SubResource("ConvexPolygonShape3D_1olia")
+
+[node name="targetArea3D" type="Area3D" parent="." unique_id=959363483]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="targetArea3D" unique_id=2064232704]
+shape = SubResource("ConvexPolygonShape3D_1olia")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=805581623]
+
+[node name="shootRange" type="RayCast3D" parent="." unique_id=245657652]
+transform = Transform3D(200, 0, 0, 0, 40, 0, 0, 0, 1, 0, 0, -8)
+target_position = Vector3(0, 0, 8)
+collision_mask = 9
+
+[node name="gunOne" parent="." unique_id=1664649980 instance=ExtResource("2_bgssa")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -0.14865361, 0.20903224, -0.4921948)
+
+[node name="sightRange" type="RayCast3D" parent="." unique_id=820667489]
+transform = Transform3D(300, 0, 0, 0, 40, 0, 0, 0, 1, 0, 0, -15)
+target_position = Vector3(0, 0, 15)
+collision_mask = 9
+debug_shape_thickness = 5

@@ -18,9 +18,9 @@ var speed := 2.0
 func _ready():
 	agent.path_desired_distance = 0.5
 	agent.target_desired_distance = 0.5
-func set_target():
+func set_target(target):
 	await get_tree().physics_frame
-	agent.set_target_position(get_parent().get_parent().get_child(0).global_position)
+	agent.set_target_position(target)
 #func _physics_process(delta):
 	#set_target()
 	#velocity = global_position.direction_to(agent.target_position) * speed
@@ -28,11 +28,12 @@ func set_target():
 func _process(delta: float) -> void:
 	var sightObject = $sightRange.get_collider()
 	var object = $shootRange.get_collider()
-	if object == get_parent().get_parent().get_child(0):
+	if object.has_meta("enemy"):
 		$gunOne.shoot()
-	if sightObject == get_parent().get_parent().get_child(0):
+		
+	if sightObject.has_meta("enemy") :
 		#rotate(Vector3.RIGHT, deg_to_rad(90))
 		$".".look_at(sightObject.global_position, Vector3.UP)
-		set_target()
+		set_target(sightObject)
 		velocity = global_position.direction_to(agent.target_position) * speed
 		move_and_slide()
