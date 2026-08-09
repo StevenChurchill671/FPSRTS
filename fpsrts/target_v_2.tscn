@@ -29,10 +29,11 @@ size = Vector3(5.0220337, 9.26062, 2.6148071)
 size = Vector3(5.160095, 3.4535828, 2.1669312)
 
 [node name="targetV2" type="CharacterBody3D" unique_id=1542192498]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(-0.25, 0, -3.774895e-08, 0, 0.25, 0, 3.774895e-08, 0, -0.25, 0, 3.102847, 0)
 script = ExtResource("1_xkqew")
 
 [node name="targetonebody" parent="." unique_id=2046166738 instance=ExtResource("1_mkgc8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.861206, 0)
 
 [node name="Cube" parent="targetonebody" index="0" unique_id=267260896]
 surface_material_override/0 = SubResource("StandardMaterial3D_y3k0q")
@@ -74,32 +75,35 @@ surface_material_override/0 = SubResource("StandardMaterial3D_y3k0q")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="targetonebody/Cube_004/StaticBody3D" unique_id=2092414454]
 shape = SubResource("ConvexPolygonShape3D_ltdnk")
 
-[node name="target_area" type="Area3D" parent="targetonebody" unique_id=331830492]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="targetonebody/target_area" unique_id=1631592748]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4060974, 3.138977, -0.02407837)
-shape = SubResource("BoxShape3D_g4v7s")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="targetonebody/target_area" unique_id=645980577]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6187077, 6.5478697, -0.08358765)
-shape = SubResource("BoxShape3D_yf5fn")
-
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=361655313]
 
 [node name="shootRange" type="RayCast3D" parent="." unique_id=1939855088]
-transform = Transform3D(400, 0, 0, 0, 400, 0, 0, 0, 2, 0, 4, -17)
+transform = Transform3D(400, 0, 0, 0, 0, 0, 0, 0, 2, 2, -0.86120605, -17)
 target_position = Vector3(0, 0, 8)
 collision_mask = 9
+hit_from_inside = true
 
 [node name="sightRange" type="RayCast3D" parent="." unique_id=1920220770]
-transform = Transform3D(400, 0, 0, 0, 400, 0, 0, 0, 2, 0, 4, -30)
+transform = Transform3D(400, 0, 0, 0, 0, 0, 0, 0, 2, 2, -0.86120605, -30)
 target_position = Vector3(0, 0, 15)
 collision_mask = 9
+hit_from_inside = true
 debug_shape_thickness = 5
 
 [node name="gunOne" parent="." unique_id=1664649980 instance=ExtResource("3_t6rcr")]
-transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 6.1581163, 5.811728, -1.4880953)
+transform = Transform3D(-8.742276e-08, 0, 2, 0, 2, 0, -2, 0, -8.742276e-08, 6.1581163, 0.95052147, -1.4880953)
 
-[connection signal="area_entered" from="targetonebody/target_area" to="." method="_on_target_area_3d_area_entered"]
+[node name="target_area" type="Area3D" parent="." unique_id=331830492]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.861206, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="target_area" unique_id=1631592748]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4060974, 3.138977, -0.02407837)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="target_area" unique_id=645980577]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6187077, 6.5478697, -0.08358765)
+shape = SubResource("BoxShape3D_yf5fn")
+
+[connection signal="area_entered" from="target_area" to="." method="_on_target_area_3d_area_entered"]
 
 [editable path="targetonebody"]
