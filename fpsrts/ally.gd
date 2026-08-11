@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 var health = 10
-var enemy = true
+var alert = 35
 func damaged():
 	health -= 1
 	if health < 1:
@@ -18,9 +18,10 @@ var speed := 2.0
 func _ready():
 	agent.path_desired_distance = 0.5
 	agent.target_desired_distance = 0.5
+	set_target(self)
 func set_target(target):
 	await get_tree().physics_frame
-	agent.set_target_position(target)
+	agent.set_target_position(target.global_position)
 #func _physics_process(delta):
 	#set_target()
 	#velocity = global_position.direction_to(agent.target_position) * speed
@@ -28,12 +29,28 @@ func set_target(target):
 func _process(delta: float) -> void:
 	var sightObject = $sightRange.get_collider()
 	var object = $shootRange.get_collider()
-	if object.has_meta("enemy"):
-		$gunOne.shoot()
-		
-	if sightObject.has_meta("enemy") :
-		#rotate(Vector3.RIGHT, deg_to_rad(90))
-		$".".look_at(sightObject.global_position, Vector3.UP)
-		set_target(sightObject)
+	if object != null:
+		if object.has_meta("enemy"):
+			$gunOne.shoot()
+	if sightObject != null:
+		if sightObject.has_meta("enemy") :
+			#rotate(Vector3.RIGHT, deg_to_rad(90))
+			$".".look_at(sightObject.global_position, Vector3.UP)
+			set_target(sightObject)
+			velocity = global_position.direction_to(agent.target_position) * speed
+			move_and_slide()
+
+
+
+
+
+func _on_alert_timer_timeout() -> void:
+	pass # Replace with function body.
+
+
+func _on_alert_area_body_entered(body: Node3D) -> void:
+	if alert > 0 && body.has_meta("enemy"):
+		$".".look_at(body.global_position, Vector3.UP)
+		set_target(body)
 		velocity = global_position.direction_to(agent.target_position) * speed
 		move_and_slide()

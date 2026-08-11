@@ -2,6 +2,9 @@ extends CharacterBody3D
 
 var health = 10
 var enemy = true
+var alert = 0
+var isAlert = false
+var currentTarget
 func damaged():
 	health -= 1
 	if health < 1:
@@ -18,9 +21,10 @@ var speed := 2.0
 func _ready():
 	agent.path_desired_distance = 0.5
 	agent.target_desired_distance = 0.5
-func set_target():
+	set_target(self)
+func set_target(target):
 	await get_tree().physics_frame
-	agent.set_target_position(get_parent().get_parent().get_child(0).global_position)
+	agent.set_target_position(target.global_position)
 #func _physics_process(delta):
 	#set_target()
 	#velocity = global_position.direction_to(agent.target_position) * speed
@@ -28,11 +32,45 @@ func set_target():
 func _process(delta: float) -> void:
 	var sightObject = $sightRange.get_collider()
 	var object = $shootRange.get_collider()
-	if object == get_parent().get_parent().get_child(0):
-		$gunOne.shoot()
-	if sightObject == get_parent().get_parent().get_child(0):
-		#rotate(Vector3.RIGHT, deg_to_rad(90))
-		$".".look_at(sightObject.global_position, Vector3.UP)
-		set_target()
+	if object != null:
+		if object.has_meta("player") :
+			$gunOne.shoot()
+	if sightObject != null && !sightObject.has_meta("ray"):
+		if sightObject.has_meta("player"):
+			#rotate(Vector3.RIGHT, deg_to_rad(90))
+			$".".look_at(sightObject.global_position, Vector3.UP)
+			set_target(sightObject)
+			velocity = global_position.direction_to(agent.target_position) * speed
+			move_and_slide()
+	if isAlert:
+		$".".look_at(currentTarget.global_position, Vector3.UP)
+		set_target(currentTarget)
 		velocity = global_position.direction_to(agent.target_position) * speed
 		move_and_slide()
+	else:
+		velocity = global_position.direction_to(agent.target_position) * speed
+		move_and_slide()
+
+
+func _on_alert_area_body_entered(body: Node3D) -> void:
+	if alert > 0 && body.has_meta("player"):
+		$".".look_at(body.global_position, Vector3.UP)
+		set_target(body)
+		velocity = global_position.direction_to(agent.target_position) * speed
+		move_and_slide()
+		isAlert = true
+		alert = 10
+		currentTarget = body
+		$alertTime.start()
+	
+
+
+func _on_alert_time_timeout() -> void:
+	if alert > 0:
+		alert -= 1
+		$alertTime.start()
+	
+
+
+func _on_alert_area_body_exited(body: Node3D) -> void:
+	currentTarget = null

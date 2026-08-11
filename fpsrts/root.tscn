@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://cgilpcsgih6dx" path="res://map_one.tscn" id="1_pyidc"]
 [ext_resource type="PackedScene" uid="uid://c23u53icm6gte" path="res://player.tscn" id="2_vvh5c"]
-[ext_resource type="PackedScene" uid="uid://dy7u50suk3nvx" path="res://map_two_obstacles.tscn" id="3_vvh5c"]
 
 [node name="Root" type="Node" unique_id=1945866865]
 
@@ -10,5 +9,3 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7329922, 13.805444)
 
 [node name="mapOne" parent="." unique_id=571239912 instance=ExtResource("1_pyidc")]
-
-[node name="map_two_obstacles" parent="." unique_id=636235057 instance=ExtResource("3_vvh5c")]
