@@ -104,12 +104,12 @@ func _on_stamina_token_stamina_token_collected() -> void:
 	addToMaxStamina()
 
 func addAllyToFollowPosition(ally, numb):
-	if numb == 1:
+	if numb == 0:
 		allyOne = ally
 		return $playerFollowPositions.get_child(0)
 	if numb == 2:
 		allyTwo = ally
-		return $playerFollowPositions.get_child(2)
-	if numb == 3:
+		return $playerFollowPositions.get_child(1)
+	if numb == 4:
 		allyThree = ally
-		return $playerFollowPositions.get_child(4)
+		return $playerFollowPositions.get_child(2)
