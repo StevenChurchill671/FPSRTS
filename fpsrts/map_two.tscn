@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://cmiju7c7b2d1q"]
+
+[ext_resource type="PackedScene" uid="uid://b12l3o0ml8tf0" path="res://target.tscn" id="1_v6rik"]
+[ext_resource type="PackedScene" uid="uid://dhbykxr8ch170" path="res://ally.tscn" id="2_6x0ko"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pcuke"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_v6rik"]
+vertices = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, -1)
+polygons = [PackedInt32Array(0, 1, 2), PackedInt32Array(1, 3, 2)]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1bcoy"]
+
+[sub_resource type="Sky" id="Sky_121qs"]
+sky_material = SubResource("ProceduralSkyMaterial_1bcoy")
+
+[sub_resource type="Environment" id="Environment_6x0ko"]
+background_mode = 2
+sky = SubResource("Sky_121qs")
+
+[node name="mapTwo" type="Node3D" unique_id=1591976230]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=248472676]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=449621003]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=62400795]
+shape = SubResource("ConvexPolygonShape3D_pcuke")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="MeshInstance3D" unique_id=503549850]
+navigation_mesh = SubResource("NavigationMesh_v6rik")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1084680993]
+environment = SubResource("Environment_6x0ko")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=1654676014]
+
+[node name="target" parent="." unique_id=1623900586 instance=ExtResource("1_v6rik")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 2.0798128, 0.1, 8.685027)
+
+[node name="target2" parent="." unique_id=1311842777 instance=ExtResource("1_v6rik")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 3.460997, 0.1, 8.201668)
+
+[node name="target3" parent="." unique_id=164513707 instance=ExtResource("1_v6rik")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.9239815, 0.1, 8.571926)
+
+[node name="target4" parent="." unique_id=1224518907 instance=ExtResource("1_v6rik")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.3970421, 0.09999924, 8.453868)
+
+[node name="ally" parent="." unique_id=191582796 instance=ExtResource("2_6x0ko")]
+transform = Transform3D(-0.19811474, 0, 0.027396275, 0, 0.2, 0, -0.027396275, 0, -0.19811474, 3.6380029, 0.1, -1.5612236)
+
+[node name="ally2" parent="." unique_id=1400166660 instance=ExtResource("2_6x0ko")]
+transform = Transform3D(-0.19811474, 0, 0.027396275, 0, 0.2, 0, -0.027396275, 0, -0.19811474, 5.0129333, 0.09999924, -1.0618101)
+
+[node name="ally3" parent="." unique_id=331134318 instance=ExtResource("2_6x0ko")]
+transform = Transform3D(-0.19811474, 0, 0.027396275, 0, 0.2, 0, -0.027396275, 0, -0.19811474, 2.2269247, 0.1, -1.9138778)

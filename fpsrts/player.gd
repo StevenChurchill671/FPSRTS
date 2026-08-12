@@ -1,5 +1,12 @@
 extends CharacterBody3D
 
+var allyOne
+var allyTwo
+var allyThree
+
+
+
+
 var isMapOpen = false
 var map
 @onready
@@ -95,3 +102,14 @@ func _on_timer_timeout() -> void:
 
 func _on_stamina_token_stamina_token_collected() -> void:
 	addToMaxStamina()
+
+func addAllyToFollowPosition(ally, numb):
+	if numb == 1:
+		allyOne = ally
+		return $playerFollowPositions.get_child(0)
+	if numb == 2:
+		allyTwo = ally
+		return $playerFollowPositions.get_child(2)
+	if numb == 3:
+		allyThree = ally
+		return $playerFollowPositions.get_child(4)

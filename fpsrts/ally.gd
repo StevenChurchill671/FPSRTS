@@ -1,5 +1,5 @@
 extends CharacterBody3D
-
+var followingPlayer = false
 var health = 10
 var alert = 5
 var isAlert = false
@@ -47,8 +47,14 @@ func _process(delta: float) -> void:
 		set_target(currentTarget)
 		velocity = global_position.direction_to(agent.target_position) * speed
 		move_and_slide()
-
-
+	if !isAlert && currentTarget !=null:
+		$".".look_at(currentTarget.global_position, Vector3.UP)
+		set_target(currentTarget)
+		velocity = global_position.direction_to(agent.target_position) * speed
+		move_and_slide()
+	else:
+		velocity = global_position.direction_to(agent.target_position) * speed
+		move_and_slide()
 
 
 func _on_alert_timer_timeout() -> void:
@@ -73,3 +79,19 @@ func _on_alert_area_body_entered(body: Node3D) -> void:
 
 func _on_alert_area_body_exited(body: Node3D) -> void:
 	currentTarget = null
+
+
+ 
+
+
+func _on_follow_player_body_entered(body: Node3D) -> void:
+	if body.has_meta("player") && !followingPlayer:
+		if body.allyOne != null:
+			set_target(body.addAllyToFollowPosition(self, 0))
+			followingPlayer = true
+		if body.allyTwo != null:
+			set_target(body.addAllyToFollowPosition(self, 2))
+			followingPlayer = true
+		if body.allyThree != null:
+			set_target(body.addAllyToFollowPosition(self, 4))
+			followingPlayer = true
