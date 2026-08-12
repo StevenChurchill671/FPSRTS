@@ -4,6 +4,10 @@ var ammmoRemaining = 60
 var cooldown = false
 var waiting = false
 var bullet = preload("uid://dqugpu8psytd5")
+
+func _ready() -> void:
+	$gunAmmoCount.mesh = $gunAmmoCount.mesh.duplicate()
+	
 func triggerPull():
 	if ammmoRemaining > 0 && !cooldown:
 		shoot();

@@ -15,9 +15,6 @@ mesh = SubResource("CapsuleMesh_g4v7s")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1126611101]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=830394054]
-shape = SubResource("ConvexPolygonShape3D_rtl8c")
-
 [node name="Area3D" type="Area3D" parent="." unique_id=421518089]
 metadata/bulletArea = true
 
