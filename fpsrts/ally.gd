@@ -1,7 +1,9 @@
 extends CharacterBody3D
 
 var health = 10
-var alert = 35
+var alert = 5
+var isAlert = false
+var currentTarget 
 func damaged():
 	health -= 1
 	if health < 1:
@@ -31,7 +33,7 @@ func _process(delta: float) -> void:
 	var object = $shootRange.get_collider()
 	if object != null:
 		if object.has_meta("enemy"):
-			$gunOne.shoot()
+			$gunOne.triggerPull()
 	if sightObject != null:
 		if sightObject.has_meta("enemy") :
 			#rotate(Vector3.RIGHT, deg_to_rad(90))
@@ -39,13 +41,22 @@ func _process(delta: float) -> void:
 			set_target(sightObject)
 			velocity = global_position.direction_to(agent.target_position) * speed
 			move_and_slide()
-
+			alert = 10
+	if isAlert && currentTarget != null:
+		$".".look_at(currentTarget.global_position, Vector3.UP)
+		set_target(currentTarget)
+		velocity = global_position.direction_to(agent.target_position) * speed
+		move_and_slide()
 
 
 
 
 func _on_alert_timer_timeout() -> void:
-	pass # Replace with function body.
+	if alert>0:
+		alert -= 1
+		$AlertTimer.start()
+	if alert ==0:
+		isAlert=false
 
 
 func _on_alert_area_body_entered(body: Node3D) -> void:
@@ -54,3 +65,11 @@ func _on_alert_area_body_entered(body: Node3D) -> void:
 		set_target(body)
 		velocity = global_position.direction_to(agent.target_position) * speed
 		move_and_slide()
+		isAlert = true
+		alert = 5
+		currentTarget = body
+		$AlertTimer.start()
+
+
+func _on_alert_area_body_exited(body: Node3D) -> void:
+	currentTarget = null

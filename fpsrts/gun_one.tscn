@@ -49,7 +49,7 @@ wait_time = 0.001
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.3788839, 0.09662324, -0.23147723)
 mesh = SubResource("BoxMesh_g4v7s")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=2009857306]
+[node name="gunAmmoCount" type="MeshInstance3D" parent="." unique_id=2009857306]
 transform = Transform3D(-1.3113417e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.3113417e-08, 0.26247197, 0.10138994, -0.21921453)
 mesh = SubResource("TextMesh_g4v7s")
 

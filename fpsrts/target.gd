@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 var health = 10
 var enemy = true
-var alert = 0
+var alert = 5
 var isAlert = false
 var currentTarget
 func damaged():
@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 	var object = $shootRange.get_collider()
 	if object != null:
 		if object.has_meta("player") :
-			$gunOne.shoot()
+			$gunOne.triggerPull()
 	if sightObject != null && !sightObject.has_meta("ray"):
 		if sightObject.has_meta("player"):
 			#rotate(Vector3.RIGHT, deg_to_rad(90))
@@ -42,7 +42,8 @@ func _process(delta: float) -> void:
 			set_target(sightObject)
 			velocity = global_position.direction_to(agent.target_position) * speed
 			move_and_slide()
-	if isAlert:
+			alert = 10
+	if isAlert && currentTarget !=null:
 		$".".look_at(currentTarget.global_position, Vector3.UP)
 		set_target(currentTarget)
 		velocity = global_position.direction_to(agent.target_position) * speed
@@ -69,6 +70,8 @@ func _on_alert_time_timeout() -> void:
 	if alert > 0:
 		alert -= 1
 		$alertTime.start()
+	if alert ==0:
+		isAlert = false
 	
 
 

@@ -8,7 +8,7 @@ func triggerPull():
 	if ammmoRemaining > 0 && !cooldown:
 		shoot();
 		ammmoRemaining -=1
-		$MeshInstance3D3.mesh.text = "" + str(ammmoRemaining) 
+		$gunAmmoCount.mesh.text = "" + str(ammmoRemaining) 
 		cooldown = true
 		$fireRate.start()
 		test()
@@ -44,7 +44,7 @@ func reloadWeapon():
 	var tempTotal = ammoTotal 
 	ammoTotal += ammoNeeded
 	ammmoRemaining += (tempTotal - ammoTotal)
-	$MeshInstance3D3.mesh.text = "" + str(ammmoRemaining) 
+	$gunAmmoCount.mesh.text = "" + str(ammmoRemaining) 
 	 
 	 
 func _on_timer_timeout() -> void:
